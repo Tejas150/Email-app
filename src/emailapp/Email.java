@@ -36,19 +36,26 @@ public class Email {
 	  
 	  this.password = randomPassword(defaultpasswordlength);
 	  System.out.println(" your Password is : "+this.password);
-	
+	  int choice;
+	  do
+	{
 	  System.out.println(" Do you want to change password: \n1.yes \n2.no ");
-	  int choice = in.nextInt();
+	   choice = in.nextInt();
 	  if(choice==1) {
 		  System.out.println(" Enter new Password  : ");
 		  password = in.next();
 		  System.out.println(" your final Password is : "+password);
 	  }
-	  else
+	  else if(choice==2)
 	  {
 		  System.out.println(" your final Password is : "+this.password);
 	  }
-	  
+	  else
+	  {
+		  System.out.println("INVALID INPUT!...Try again");        
+	  }
+	}
+	while(choice>2);  
 	
   //Combine elements to generate email
 	  
