@@ -50,12 +50,12 @@ public class Email {
 	  {
 		  System.out.println(" your final Password is : "+this.password);
 	  }
-	  else
+	  else 
 	  {
 		  System.out.println("INVALID INPUT!...Try again");        
 	  }
 	}
-	while(choice>2);
+	while(choice>2 ||choice<1 );
 	  
 	
   //Combine elements to generate email
@@ -116,4 +116,3 @@ public class Email {
   }
   
 }
-
