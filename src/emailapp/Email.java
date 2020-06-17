@@ -1,5 +1,4 @@
 package emailapp;
-
 import java.util.Scanner ;
 
 public class Email {
@@ -12,21 +11,20 @@ public class Email {
   private int defaultpasswordlength=8;
   private String AlternateEmail;
   private String CompanySuffix="acer.com";
- 
+  Scanner in = new Scanner(System.in);
 //Constructor to receive first and last name
   
   public Email() {
 	  String Firstname ;
 	  String Lastname ;
-	  Scanner in = new Scanner(System.in);
 	  System.out.println(" Enter first name ");
 	  Firstname = in.next();
 	  System.out.println(" Enter last name ");	  
 	  Lastname = in.next();
 	  this.firstname = Firstname;
 	  this.lastname = Lastname;
-	 System.out.println("Email Created :"+this.firstname+" "+this.lastname);
-	  
+	 System.out.println("Name :"+this.firstname+" "+this.lastname);
+
   //Call a method asking for the department - return the department
 	  
 	  this.department = SetDepartment();
@@ -34,48 +32,36 @@ public class Email {
 	  
   //Call a method that returns random password
 	  
-	  this.password = randomPassword(defaultpasswordlength);
-	  System.out.println(" your Password is : "+this.password);
-	int choice;
-	  do
-	{
-	  System.out.println(" Do you want to change password: \n1.yes \n2.no ");
-	   choice = in.nextInt();
-	  if(choice==1) {
-		  System.out.println(" Enter new Password  : ");
-		  password = in.next();
-		  System.out.println(" your final Password is : "+password);
-	  }
-	  else if(choice==2)
-	  {
-		  System.out.println(" your final Password is : "+this.password);
-	  }
-	  else 
-	  {
-		  System.out.println("INVALID INPUT!...Try again");        
-	  }
-	}
-	while(choice>2 ||choice<1 );
-	  
-	
+			 this.password = randomPassword(defaultpasswordlength);
+			  System.out.println(" your Password is : "+this.password);
+		
+			
   //Combine elements to generate email
 	  
 	  email = firstname.toLowerCase()+"."+lastname.toLowerCase()+"@"+department+"."+CompanySuffix;
 	// System.out.println("Your Email is : " +email);
-	  
-	  
+	
+	  in.close();
   }
   
   //Ask for the department 
   
   private String SetDepartment() {
-	  System.out.print("New worker :" + firstname+"\nDepartment codes : \n1 for sales\n2 for Development\n3 for Accounting\n0 for none\nEnter department code :");
-	  Scanner in = new Scanner(System.in);
-	 int depChoice = in.nextInt();
+	
+		try
+			  {
+	  System.out.print("New worker :" + firstname+"\nDepartment codes : \n1 for sales\n2 for Development\n3 for Accounting\nPress any other key to for none\nEnter department code :");
+	int depChoice = in.nextInt();
 	 if(depChoice==1) {return "sales" ;}
 	 else if(depChoice==2) {return "Devlopment" ;}
 	 else if(depChoice==3) {return "Accounting" ;}
-	 else { return ""; }
+		}
+	  catch(Exception e)
+	  {
+		  System.out.println("");
+	  }
+
+		return "";
   }
   
   //Generate a random password
@@ -102,9 +88,26 @@ public class Email {
   }
    
   //change the password
-  public void changePassword(String password) {
-	this.password = password ;
-  }
+  public String changePassword() {
+    String newpass=new String();
+	String conNewPass=new String();
+ System.out.println(" Enter old Password to continue : ");
+	String oldpass=in.next();
+	if(oldpass==password)
+	{
+	  System.out.println(" Enter new Password  : ");
+	  newpass = in.next();
+	 System.out.println(" Confirm new Password  : ");
+	 conNewPass = in.next();  
+	}
+	if(newpass==conNewPass) {
+		  System.out.print(" your final Password is : ");
+	}
+	else {
+		System.out.print(" Confirm  Password does not match new pasword!...Try Again ");
+	}
+		  return password;
+	  }
   
   public int getMailboxCapacity() { return mailboxCapacity ;}
   public String getAlternateEmail() {return AlternateEmail ;}
@@ -114,5 +117,4 @@ public class Email {
 			 "\n\t\t\tCOMPANY EMAIL :" +email+
 			 "\n\t\t\tMAIL BOX CAPACITY :" +mailboxCapacity+"mb";
   }
-  
 }
