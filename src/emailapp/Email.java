@@ -10,7 +10,7 @@ public class Email {
   private int mailboxCapacity = 800;
   private int defaultpasswordlength=8;
   private String AlternateEmail;
-  private String CompanySuffix="acer.com";
+  private String CompanySuffix="company.com";
   Scanner in = new Scanner(System.in);
 //Constructor to receive first and last name
   
@@ -48,19 +48,13 @@ public class Email {
   
   private String SetDepartment() {
 	
-		try
-			  {
-	  System.out.print("New worker :" + firstname+"\nDepartment codes : \n1 for sales\n2 for Development\n3 for Accounting\nPress any other key to for none\nEnter department code :");
-	int depChoice = in.nextInt();
-	 if(depChoice==1) {return "sales" ;}
-	 else if(depChoice==2) {return "Devlopment" ;}
-	 else if(depChoice==3) {return "Accounting" ;}
-		}
-	  catch(Exception e)
-	  {
-		  System.out.println("");
-	  }
-
+	 System.out.print("New worker :" + firstname+"\nDepartment codes : \n1] for sales\n2] for Development\n3] for Accounting\n4] for none\nEnter department code :");
+	 char depChoice = in.next().charAt(0);
+	 if(depChoice=='1') return "sales" ;
+	 else if(depChoice=='2') return "Development" ;
+	 else if(depChoice=='3') return "Accounting" ;
+	 else if(depChoice=='4') return "" ;
+	 else System.out.println("Invalid Input!..Try Again.");SetDepartment();
 		return "";
   }
   
